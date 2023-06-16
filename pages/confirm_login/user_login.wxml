@@ -1,11 +1,12 @@
 <!-- pages/confirm_login/user_login.wxml -->
-<text>pages/confirm_login/user_login.wxml</text>
 <view class="container">
     <view class="profile">
-        <image class="avatar" src="{{avatarUrl}}" wx:if="{{avatarUrl}}" />
-        <text class="nickname" wx:if="{{nickname}}">{{nickname}}</text>
-        <button class="get-profile-button" bindtap="onGetUserProfile" wx:if="{{!avatarUrl && !nickname}}">
-            获取用户头像和昵称
+        <button class="avatar-wrapper" open-type="chooseAvatar" bind:chooseavatar="onChooseAvatar">
+            <image class="avatar" src="{{avatarUrl}}" wx:if="{{avatarUrl}}" />
         </button>
+        <input bindinput="onInputChange" class="nickname" type="nickname" placeholder="请输入昵称">
+            {{nickname}}
+        </input>
+        <button class="get-profile-button" bindtap="onGetUserProfile">保存 & 登录</button>
     </view>
 </view>

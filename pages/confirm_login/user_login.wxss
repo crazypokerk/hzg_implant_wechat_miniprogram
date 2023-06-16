@@ -11,20 +11,30 @@
 	text-align: center;
 }
 
+.avatar-wrapper {
+	background-color: initial;
+}
+
 .avatar {
-	width: 100px;
-	height: 100px;
+	width: 75px;
+	height: 75px;
 	border-radius: 50%;
 	margin-bottom: 10px;
 }
 
 .nickname {
 	font-size: 18px;
-	margin-bottom: 20px;
+	margin-top: 30px;
+	margin-right: 10%;
+	margin-left: 10%;
+	border: 1px solid #ced4da;
+	border-radius: 10px;
+	height: 45px;
 }
 
 .get-profile-button {
 	background-color: #1aad19;
 	color: #ffffff;
 	border-radius: 5px;
+	margin-top: 200px;
 }
