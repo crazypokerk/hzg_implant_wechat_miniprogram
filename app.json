@@ -2,7 +2,8 @@
   "pages": [
     "pages/index/index",
     "pages/logs/logs",
-    "pages/index/forguncy_view"
+    "pages/webview/forguncy_webview",
+    "pages/confirm_login/user_login"
   ],
   "window": {
     "backgroundTextStyle": "light",

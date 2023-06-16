@@ -149,7 +149,7 @@ Page({
                 if (response.data.ErrCode === 0) {
                   console.log(response.data.redirectURL);
                   wx.navigateTo({
-                    url: `/pages/index/forguncy?url=${encodeURIComponent(response.data.redirectURL)}`
+                    url: `/pages/webview/forguncy_webview?url=${encodeURIComponent(response.data.redirectURL)}`
                   })
                 }
               }
@@ -234,7 +234,7 @@ Page({
     // 推荐使用wx.getUserProfile获取用户信息，开发者每次通过该接口获取用户个人信息均需用户确认，开发者妥善保管用户快速填写的头像昵称，避免重复弹窗
     let that = this;
     wx.getUserProfile({
-      desc: '用于获取用户信息', // 声明获取用户个人信息后的用途，后续会展示在弹窗中，请谨慎填写
+      desc: '需要获取用户信息用于登录', // 声明获取用户个人信息后的用途，后续会展示在弹窗中，请谨慎填写
       success: (userResponse) => {
         console.log(userResponse)
         wx.showLoading({
