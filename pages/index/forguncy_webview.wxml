@@ -1,0 +1,6 @@
+<!-- pages/index/forguncy.wxml -->
+<view class="container">
+  <block>
+    <web-view src="{{url}}" />
+  </block>
+</view>
