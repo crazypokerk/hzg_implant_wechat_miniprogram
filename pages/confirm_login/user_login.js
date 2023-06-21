@@ -8,6 +8,7 @@ Page({
     baseURL: "https://testforguncy.app.hzgcloud.cn/mini_program_test",
     serverUrl: "https://testforguncy.app.hzgcloud.cn",
     clientID: "f07a5a25-c9c6-409d-bb24-437185dc",
+    ssoPassword: "yzgd6bHAoEm$",
     avatarUrl: '/resources/img/default_avatar.svg',
     nickname: ''
   },
@@ -89,7 +90,8 @@ Page({
           url = `${that.data.baseURL}/ServerCommand/GetSSOToken`;
           body = {
             "userName": openid,
-            "baseURL": that.data.baseURL
+            "baseURL": that.data.baseURL,
+            "ssoPassword": that.data.ssoPassword
           }
         }
         if (openid == null) {
