@@ -39,38 +39,12 @@ Page({
         } else {
           wx.showModal({
             title: "错误",
-            confirmText: "确定"
+            confirmText: "确定",
+            content: "发生错误"
           });
         }
       }
     });
-    /**  
-    wx.getUserProfile({
-      desc: '需要获取用户信息用于登录', // 声明获取用户个人信息后的用途，后续会展示在弹窗中，请谨慎填写
-      success: (userResponse) => {
-        console.log(userResponse)
-        wx.showLoading({
-          title: "正在登录",
-          mask: true
-        });
-        wx.login({
-          success: res => {
-            if (res.code) {
-              that.verifyLoginUser(res.code, userResponse, null);
-            }
-          },
-          fail: error => {
-            wx.hideLoading();
-            wx.showModal({
-              title: "错误",
-              content: error,
-              confirmText: "确定"
-            });
-          }
-        });
-      }
-    })
-    */
   },
   verifyLoginUser: function (code, userObj, openid) {
     let that = this;
@@ -100,7 +74,8 @@ Page({
             "code": code,
             "fullname": userObj.nickname,
             "avatarurl": userObj.avatarurl,
-            "baseURL": userObj.baseURL
+            "baseURL": userObj.baseURL,
+            "ssoPassword": that.data.ssoPassword
           }
         }
         wx.request({
@@ -151,10 +126,6 @@ Page({
               "client_id": that.data.clientID,
               "serverURL": that.data.serverUrl
             }),
-            fail: err => {
-              console.log(`/ServerCommand/GetRequestToken${err}`);
-              wx.hideLoading();
-            },
             success: response => {
               console.log("response.data:::");
               console.log(response.data);
@@ -163,10 +134,6 @@ Page({
                 method: "POST",
                 header: { "Authorization": response.data.Authorization },
                 data: { "code": result.code },
-                fail: err => {
-                  console.log(`/ServerCommand/Code2SessionID${err}`);
-                  wx.hideLoading();
-                },
                 success: code2SessionResult => {
                   console.log("code2SessionResult:::");
                   console.log(code2SessionResult.data);
@@ -190,19 +157,23 @@ Page({
                           })
                           that.verifyLoginUser(result.code, null, code2SessionResult.data.openid);
                         } else {
-                          wx.hideLoading();
                           console.log("end --> wx.login")
                         }
+                        wx.hideLoading();
                       }
                     })
                   } else {
                     wx.showModal({
-                      content: code2SessionResult.data.Message,
+                      content: "错误:code2SessionResult返回有误",
                       confirmText: "确定"
                     });
                   }
                 }
               })
+            },
+            fail: err => {
+              console.log(`/ServerCommand/GetRequestToken${err}`);
+              wx.hideLoading();
             }
           })
         }
